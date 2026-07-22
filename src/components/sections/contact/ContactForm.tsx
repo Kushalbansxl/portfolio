@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+
 import { motion, Variants } from 'framer-motion'
 import {
   Send,
@@ -7,6 +9,8 @@ import {
   Mail,
   MessageSquare,
   ArrowUpRight,
+  CheckCircle2,
+  Loader2
 } from 'lucide-react'
 
 import {
@@ -61,6 +65,36 @@ const socialLinks = [
 ]
 
 export default function ContactForm() {
+  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/kushalbansal37245@gmail.com", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -40 }}
@@ -88,9 +122,10 @@ export default function ContactForm() {
       </motion.div>
 
       {/* FORM */}
-      <form action="https://formsubmit.co/kushalbansal37245@gmail.com" method="POST" className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input type="hidden" name="_subject" value="New submission from Portfolio!" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" style={{ display: 'none' }} />
         {/* NAME */}
         <motion.div
           variants={fieldVariants}
@@ -162,16 +197,34 @@ export default function ContactForm() {
           viewport={{ once: false }}
           transition={{ delay: 0.28 }}
           whileHover={{
-            scale: 1.06,
+            scale: status === 'loading' || status === 'success' ? 1 : 1.06,
             transition: { duration: 0.12 },
           }}
-          whileTap={{ scale: 0.97 }}
+          whileTap={{ scale: status === 'loading' || status === 'success' ? 1 : 0.97 }}
           type="submit"
-          className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2"
+          disabled={status === 'loading' || status === 'success'}
+          className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          <Send size={16} />
-          Send Message
+          {status === 'loading' ? (
+            <>
+              <Loader2 size={16} className="animate-spin" />
+              Sending...
+            </>
+          ) : status === 'success' ? (
+            <>
+              <CheckCircle2 size={16} className="text-green-400" />
+              <span className="text-green-400">Message Sent!</span>
+            </>
+          ) : (
+            <>
+              <Send size={16} />
+              Send Message
+            </>
+          )}
         </motion.button>
+        {status === 'error' && (
+          <p className="text-red-400 text-sm text-center mt-2">Oops! Something went wrong. Please try again.</p>
+        )}
       </form>
 
       {/* SOCIAL */}

@@ -68,9 +68,8 @@ export default function Hero({ showApp }: HeroProps) {
 
         {/* TEXT */}
         <div
-          className="md:max-w-[600px]"
+          className="md:max-w-[600px] w-full pr-24 sm:pr-32 md:pr-0"
           style={{
-            width: "100%",
             position: "relative",
             zIndex: 5,
           }}
