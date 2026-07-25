@@ -12,7 +12,9 @@
   --text-primary: #f0f0f0;
   --text-secondary: #888888;
   --text-muted: #555555;
-  --accent: #d4d4d4;
+  --accent: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.15);
+  --accent-glow: rgba(16, 185, 129, 0.35);
 }
 
 * {
@@ -40,8 +42,7 @@ html {
 }
 
 * {
-  caret-color: transparent;
-  user-select: none;
+  /* Removed user-select: none to improve accessibility */
 }
 
 /* Hide scrollbar global */
@@ -88,4 +89,19 @@ textarea {
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.2);
+}
+
+/* Utility Classes */
+.accent-text {
+  color: var(--accent);
+}
+
+.accent-border {
+  border-color: var(--accent);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }

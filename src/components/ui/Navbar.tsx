@@ -113,7 +113,9 @@ export default function Navbar() {
         }}
       >
         <Link href="/#home" style={{ display: 'flex', alignItems: 'center' }}>
-         
+          <span style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+            Kushal Bansal
+          </span>
         </Link>
 
         {!isMobile && (
@@ -147,8 +149,8 @@ export default function Navbar() {
                       bottom: 0,
                       left: 0,
                       width: '100%',
-                      height: 1,
-                      background: 'white',
+                      height: 2,
+                      background: 'var(--accent)',
                       transform: isActive
                         ? 'scaleX(1)'
                         : 'scaleX(0)',
@@ -162,6 +164,31 @@ export default function Navbar() {
           </div>
         )}
 
+        {!isMobile && (
+          <a
+            href="#contact"
+            style={{
+              padding: '6px 16px',
+              borderRadius: '999px',
+              fontSize: '13px',
+              fontWeight: 600,
+              fontFamily: "'DM Mono', monospace",
+              color: 'var(--accent)',
+              border: '1px solid var(--accent)',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 0 15px var(--accent-glow)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'none'
+            }}
+          >
+            Hire Me
+          </a>
+        )}
+
         {isMobile && (
           <div
             onClick={() => setOpen(!open)}
@@ -172,9 +199,18 @@ export default function Navbar() {
               cursor: 'pointer',
             }}
           >
-            <span style={{ width: 20, height: 2, background: 'white' }} />
-            <span style={{ width: 20, height: 2, background: 'white' }} />
-            <span style={{ width: 20, height: 2, background: 'white' }} />
+            <motion.span
+              animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
+              style={{ width: 20, height: 2, background: 'var(--text-primary)', transformOrigin: 'center' }}
+            />
+            <motion.span
+              animate={{ opacity: open ? 0 : 1 }}
+              style={{ width: 20, height: 2, background: 'var(--text-primary)' }}
+            />
+            <motion.span
+              animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
+              style={{ width: 20, height: 2, background: 'var(--text-primary)', transformOrigin: 'center' }}
+            />
           </div>
         )}
       </div>
@@ -206,10 +242,18 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 style={{
                   fontFamily: "'DM Mono', monospace",
-                  fontSize: 13,
+                  fontSize: 14,
+                  fontWeight: isActive ? 500 : 400,
                   color: isActive
-                    ? 'var(--text-primary)'
-                    : 'var(--text-secondary)',
+                    ? 'var(--accent)'
+                    : 'var(--text-primary)',
+                  transition: 'color 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--accent)'
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.color = 'var(--text-primary)'
                 }}
               >
                 {item.label}

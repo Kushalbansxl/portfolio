@@ -65,6 +65,11 @@ export default function Hero({ showApp }: HeroProps) {
         >
           {showApp && <App />}
         </div>
+        
+        {/* GRADIENT OVERLAY FOR READABILITY */}
+        <div 
+          className="absolute inset-0 z-[1] pointer-events-none md:bg-gradient-to-r md:from-bg-primary md:via-bg-primary/80 md:to-transparent bg-bg-primary/80"
+        />
 
         {/* TEXT */}
         <div
@@ -92,9 +97,13 @@ export default function Hero({ showApp }: HeroProps) {
                 color: "var(--text-muted)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px"
               }}
             >
-              ✦ Available for work
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              Available for work
             </span>
           </motion.div>
 
@@ -144,7 +153,7 @@ export default function Hero({ showApp }: HeroProps) {
                 marginBottom: 24,
               }}
             >
-              Developer
+              <span className="accent-text">Developer</span>
             </motion.h1>
           </div>
 
@@ -236,10 +245,10 @@ export default function Hero({ showApp }: HeroProps) {
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 11,
                   color: "var(--text-secondary)",
-                  border: "1px solid var(--border)",
+                  border: "1px solid var(--accent-glow)",
                   borderRadius: 999,
                   padding: "5px 12px",
-                  backgroundColor: "var(--bg-card)",
+                  backgroundColor: "var(--accent-soft)",
                 }}
               >
                 {skill}

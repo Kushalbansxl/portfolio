@@ -203,7 +203,7 @@ export default function ContactForm() {
           whileTap={{ scale: status === 'loading' || status === 'success' ? 1 : 0.97 }}
           type="submit"
           disabled={status === 'loading' || status === 'success'}
-          className="w-full rounded-2xl py-4 bg-white/10 border border-white/10 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full rounded-2xl py-4 bg-white/5 border border-white/10 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {status === 'loading' ? (
             <>
@@ -254,7 +254,7 @@ export default function ContactForm() {
             scale: 1.05,
             transition: { duration: 0.12 },
           }}
-          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-4 mb-3 flex items-center justify-between"
+          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-4 mb-3 flex items-center justify-between transition-colors duration-300 hover:border-[var(--accent)] hover:shadow-[0_0_20px_var(--accent-soft)]"
         >
           <div className="absolute inset-0 bg-white/[0.04] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
 
@@ -296,7 +296,7 @@ export default function ContactForm() {
                   scale: 1.06,
                   transition: { duration: 0.12 },
                 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-3 flex items-center justify-between"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-3 flex items-center justify-between transition-colors duration-300 hover:border-[var(--accent)] hover:shadow-[0_0_15px_var(--accent-soft)]"
               >
                 <div className="absolute inset-0 bg-white/[0.04] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
 

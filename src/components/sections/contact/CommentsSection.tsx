@@ -149,7 +149,7 @@ export default function CommentsSection() {
           whileTap={{ scale: 0.98 }}
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full rounded-2xl py-3 md:py-4 bg-white/10 border border-white/10 transition-all"
+          className="w-full rounded-2xl py-3 md:py-4 bg-white/10 border border-white/10 transition-colors duration-300 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent)]"
         >
           {loading ? 'Posting...' : 'Post Comment'}
         </motion.button>
@@ -196,7 +196,7 @@ export default function CommentsSection() {
                 }}
                 className={`rounded-[20px] md:rounded-[24px] border p-3 md:p-4 ${
                   item.is_pinned
-                    ? 'border-purple-500/30 bg-purple-500/5'
+                    ? 'border-[var(--accent)] bg-[var(--accent-soft)]'
                     : 'border-white/10 bg-white/[0.03]'
                 }`}
               >
@@ -212,7 +212,7 @@ export default function CommentsSection() {
                       </p>
 
                       {item.is_pinned && (
-                        <div className="flex items-center gap-1 px-2 py-[3px] rounded-full bg-purple-500/15 border border-purple-500/20 text-[10px] text-purple-300">
+                        <div className="flex items-center gap-1 px-2 py-[3px] rounded-full bg-[var(--accent-soft)] border border-[var(--accent)] text-[10px] text-[var(--accent)]">
                           <Pin size={10} />
                           PINNED
                         </div>

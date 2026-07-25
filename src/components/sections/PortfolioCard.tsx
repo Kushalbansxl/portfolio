@@ -18,6 +18,7 @@ type Props = {
   image?: string
   image_urls?: string[]
   live_url?: string
+  technologies?: string
 }
 
 export default function PortfolioCard({
@@ -28,6 +29,7 @@ export default function PortfolioCard({
   image,
   image_urls,
   live_url,
+  technologies,
 }: Props) {
   const router = useRouter()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -43,6 +45,10 @@ export default function PortfolioCard({
     e.stopPropagation()
     if (images.length) setCurrentImageIndex((p) => (p - 1 + images.length) % images.length)
   }
+
+  const techList = technologies
+    ? technologies.split(',').map(t => t.trim()).filter(Boolean).slice(0, 3)
+    : []
 
   return (
     <motion.div
@@ -60,10 +66,26 @@ export default function PortfolioCard({
         duration: 0.75,
         delay: index * 0.06,
       }}
-      whileHover={{ y: -4 }}
-      className="group relative rounded-[26px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl flex flex-col min-h-[270px]"
+      whileHover={{ y: -4, borderColor: "var(--accent)" }}
+      className="group relative rounded-[26px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl flex flex-col min-h-[270px] transition-colors duration-300"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "0 0 25px var(--accent-soft)"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "none"
+      }}
     >
-      <div className="w-full h-36 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] mb-3 relative group/gallery">
+      <div 
+        className="w-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] mb-3 relative group/gallery aspect-[16/10]"
+        onClick={() => { if (id) router.push(`/portfolio/${id}`) }}
+        style={{ cursor: id ? 'pointer' : 'default' }}
+      >
+        {/* HOVER OVERLAY */}
+        <div className="absolute inset-0 z-30 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/gallery:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4 pointer-events-none">
+          <span className="text-white font-medium text-sm flex items-center gap-2 transform translate-y-4 group-hover/gallery:translate-y-0 transition-transform duration-300">
+            View project <ArrowRight size={14} />
+          </span>
+        </div>
         {images.length > 0 ? (
           <>
             <motion.img
@@ -110,11 +132,29 @@ export default function PortfolioCard({
         {title}
       </h3>
 
-      <p className="text-[13px] text-white/60 leading-relaxed line-clamp-2 min-h-[38px]">
+      <p className="text-[13px] text-white/60 leading-relaxed line-clamp-2 min-h-[38px] mb-3">
         {description}
       </p>
 
-      <div className="mt-auto pt-4 flex items-center justify-between">
+      {techList.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-3">
+          {techList.map((tech, i) => (
+            <span 
+              key={i}
+              className="text-[10px] font-mono px-2 py-1 rounded-md border border-white/10 bg-white/5 text-white/70"
+            >
+              {tech}
+            </span>
+          ))}
+          {technologies && technologies.split(',').length > 3 && (
+            <span className="text-[10px] font-mono px-2 py-1 text-white/50">
+              +{technologies.split(',').length - 3}
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="mt-auto pt-2 flex items-center justify-between">
         {live_url && live_url !== '' ? (
           <a
             href={live_url}

@@ -160,7 +160,7 @@ export default function PortfolioDetailPage() {
             >
               <button
                 onClick={handleBack}
-                className="inline-flex items-center gap-2 text-[13px] text-white/50 hover:text-white transition-all duration-300 mb-6"
+                className="inline-flex items-center gap-2 text-[13px] text-white/50 hover:text-[var(--accent)] transition-all duration-300 mb-6"
               >
                 <ArrowLeft size={14} />
                 Back
@@ -261,7 +261,7 @@ export default function PortfolioDetailPage() {
                 <a
                   href={project.live_url}
                   target="_blank"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-br from-[#111] to-[#181818] border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-300 text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-br from-[#111] to-[#181818] border border-white/10 hover:bg-[var(--accent-soft)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 text-sm"
                 >
                   <ExternalLink size={14} />
                   Live Demo
@@ -277,7 +277,7 @@ export default function PortfolioDetailPage() {
                 <a
                   href={project.github_url}
                   target="_blank"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-br from-[#111] to-[#181818] border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-300 text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-br from-[#111] to-[#181818] border border-white/10 hover:bg-[var(--accent-soft)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 text-sm"
                 >
                   <GitBranch size={14} />
                   Github
@@ -319,9 +319,9 @@ export default function PortfolioDetailPage() {
     duration: 0.5,
     ease: [0.22, 1, 0.36, 1],
   }}
-  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gradient-to-br from-[#101010] to-[#181818] border border-white/10 text-[11px] text-white/75"
+  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[var(--accent-soft)] border border-[var(--accent)] text-[11px] text-[var(--accent)]"
 >
-  <Box size={11} className="text-white/40" />
+  <Box size={11} className="text-[var(--accent)]" />
   {t.trim()}
 </motion.div>
   ))}

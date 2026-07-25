@@ -141,11 +141,11 @@ export default function About() {
                 style={{
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 12,
-                  color: "var(--text-muted)",
+                  color: "var(--accent)",
                   letterSpacing: "0.2em",
                 }}
               >
-                ABOUT ME
+                01 — ABOUT
               </span>
             </motion.div>
 
@@ -225,6 +225,39 @@ export default function About() {
                 flexWrap: "wrap",
               }}
             >
+              {/* DOWNLOAD CV */}
+              <a
+                href="/assets/CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "10px 18px",
+                  borderRadius: 8,
+                  border: "1px solid var(--accent)",
+                  background: "var(--accent-soft)",
+                  color: "var(--accent)",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px) scale(1.03)";
+                  e.currentTarget.style.boxShadow = "0 0 15px var(--accent-glow)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <FileText size={14} />
+                Download CV
+              </a>
+              
               {/* VIEW PROJECTS */}
               <button
                 onClick={scrollToPortfolio}
@@ -243,8 +276,7 @@ export default function About() {
                   transition: "transform 0.25s ease, opacity 0.25s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform =
-                    "translateY(-2px) scale(1.03)";
+                  e.currentTarget.style.transform = "translateY(-2px) scale(1.03)";
                   e.currentTarget.style.opacity = "0.85";
                 }}
                 onMouseLeave={(e) => {
@@ -272,11 +304,21 @@ export default function About() {
               }}
             >
               <div
+                className="group"
                 style={{
                   padding: 12,
                   borderRadius: "50%",
                   border: "1px solid var(--border)",
                   transform: "translateX(-80px)",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--accent)";
+                  e.currentTarget.style.boxShadow = "0 0 25px var(--accent-glow)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
                 <img
@@ -320,9 +362,21 @@ export default function About() {
                 border: "1px solid var(--border)",
                 background: "var(--bg-card)",
                 cursor: "pointer",
+                transition: "border-color 0.3s ease, transform 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                const iconContainer = e.currentTarget.querySelector('.stat-icon') as HTMLElement;
+                if (iconContainer) iconContainer.style.color = "var(--accent)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                const iconContainer = e.currentTarget.querySelector('.stat-icon') as HTMLElement;
+                if (iconContainer) iconContainer.style.color = "var(--text-primary)";
               }}
             >
               <div
+                className="stat-icon"
                 style={{
                   width: 34,
                   height: 34,
@@ -332,6 +386,7 @@ export default function About() {
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: 10,
+                  transition: "color 0.3s ease",
                 }}
               >
                 {item.icon}

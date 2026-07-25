@@ -31,6 +31,18 @@ export default function ContactSection() {
   viewport={{ once: false, amount: 0.3 }}
   className="text-center mb-12 sm:mb-14 lg:mb-16"
 >
+  <div className="mb-4">
+    <span
+      style={{
+        fontFamily: "'DM Mono', monospace",
+        fontSize: 12,
+        color: "var(--accent)",
+        letterSpacing: "0.2em",
+      }}
+    >
+      03 — CONTACT
+    </span>
+  </div>
   <motion.h1
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -73,9 +85,22 @@ export default function ContactSection() {
           <ContactForm />
         </div>
       </div>
- {/* COPYRIGHT */}
-<div className="mt-20 text-center text-xs text-white/35">
-  © 2026 Kushal Bansal — All rights reserved.
+ {/* COPYRIGHT & LINKS */}
+<div className="mt-20 flex flex-col items-center">
+  <div className="flex gap-6 mb-6">
+    <a href="https://github.com/Kushalbansxl" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-white/50 hover:text-[var(--accent)] transition-colors">
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/kushalbansxl/" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-white/50 hover:text-[var(--accent)] transition-colors">
+      LinkedIn
+    </a>
+    <a href="mailto:kushaliscoding@gmail.com" className="text-sm font-mono text-white/50 hover:text-[var(--accent)] transition-colors">
+      Email
+    </a>
+  </div>
+  <div className="text-xs text-white/35">
+    © 2026 Kushal Bansal — All rights reserved.
+  </div>
 </div>
     </section>
   )

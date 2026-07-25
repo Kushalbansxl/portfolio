@@ -1,5 +1,6 @@
 import "./globals.css";
 import RefreshRedirect from '@/components/RefreshRedirect'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export const metadata = {
   title: "Kushal Bansal",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-x-hidden antialiased bg-[#0d0d0d] text-white">
+        <ScrollProgress />
         <RefreshRedirect />
         {children}
         </body>

@@ -191,15 +191,16 @@ export default function WelcomeScreen() {
   style={{
     padding: '6px 14px',
     borderRadius: '999px',
-    border: '1px solid rgba(255,255,255,0.12)',
-    background: 'rgba(255,255,255,0.04)',
+    border: '1px solid var(--accent)',
+    background: 'var(--accent-soft)',
+    boxShadow: '0 0 15px var(--accent-glow)',
     backdropFilter: 'blur(10px)',
     fontSize: '12px',
     letterSpacing: '0.12em',
-    color: 'rgba(255,255,255,0.7)',
+    color: 'var(--accent)',
   }}
 >
-  
+  {process.env.NEXT_PUBLIC_SITE_URL?.replace(/^https?:\/\//, '') || 'kushal-bansal-portfolio.vercel.app/'}
 </motion.div>
       </motion.div>
     </div>

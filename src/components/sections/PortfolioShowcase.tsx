@@ -91,6 +91,18 @@ export default function PortfolioShowcase() {
           transition={{ duration: 0.9 }}
           className="text-center mb-8"
         >
+          <div className="mb-4">
+            <span
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 12,
+                color: "var(--accent)",
+                letterSpacing: "0.2em",
+              }}
+            >
+              02 — PORTFOLIO
+            </span>
+          </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-3">
             Portfolio Showcase
           </h1>
@@ -113,22 +125,30 @@ export default function PortfolioShowcase() {
                 key={tab}
                 onClick={() => {
                   setActiveTab(tab)
-
                   if (tab !== 'projects') {
                     setShowAllProjects(false)
                   }
                 }}
-                className={`flex-1 rounded-full py-3 text-sm transition-all duration-300 ${
+                className={`relative flex-1 rounded-full py-3 text-sm transition-all duration-300 ${
                   activeTab === tab
-                    ? 'bg-white/10 text-white'
+                    ? 'text-white'
                     : 'text-white/50 hover:text-white'
                 }`}
               >
-                {tab === 'projects'
-                  ? 'Projects'
-                  : tab === 'certificates'
-                  ? 'Certificates'
-                  : 'Tech Stack'}
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="portfolio-tab-indicator"
+                    className="absolute inset-0 bg-white/10 rounded-full"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  {tab === 'projects'
+                    ? 'Projects'
+                    : tab === 'certificates'
+                    ? 'Certificates'
+                    : 'Tech Stack'}
+                </span>
               </button>
             ))}
           </div>
@@ -186,19 +206,28 @@ export default function PortfolioShowcase() {
                             <PortfolioCard
                               index={i}
                               title={item.title}
-                              description={
-                                item.description
-                              }
+                              description={item.description}
                               image={item.image_url}
                               image_urls={item.image_urls}
                               live_url={item.live_url}
                               id={item.id}
+                              technologies={item.technologies}
                             />
                           </motion.div>
                         )
                       )}
                   </AnimatePresence>
                 </motion.div>
+
+                {!loading && projects.length === 0 && (
+                  <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="flex flex-col items-center justify-center p-12 text-center glass-card rounded-3xl w-full max-w-2xl mx-auto border border-white/5"
+                  >
+                    <p className="text-white/60 mb-2">No projects yet</p>
+                    <p className="text-sm text-white/40">Check back later for updates.</p>
+                  </motion.div>
+                )}
 
                 {/* SEE MORE / LESS */}
                 {!loading &&
@@ -302,6 +331,15 @@ export default function PortfolioShowcase() {
                       </h3>
                     </motion.div>
                   ))}
+
+                {!loading && certificates.length === 0 && (
+                  <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="flex flex-col items-center justify-center p-12 text-center glass-card rounded-3xl w-full border border-white/5"
+                  >
+                    <p className="text-white/60 mb-2">No certificates yet</p>
+                  </motion.div>
+                )}
               </div>
             )}
 
@@ -355,6 +393,15 @@ export default function PortfolioShowcase() {
           </motion.div>
         ))}
     </div>
+    
+    {!loading && techStacks.length === 0 && (
+      <motion.div 
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="flex flex-col items-center justify-center p-12 text-center glass-card rounded-3xl w-full max-w-2xl border border-white/5 mt-8"
+      >
+        <p className="text-white/60 mb-2">No tech stack added yet</p>
+      </motion.div>
+    )}
   </div>
 )}
           </motion.div>
