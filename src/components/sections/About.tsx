@@ -227,7 +227,7 @@ export default function About() {
             >
               {/* DOWNLOAD CV */}
               <a
-                href="/assets/CV.pdf"
+                href="/assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
